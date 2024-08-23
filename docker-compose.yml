@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  task_management_system:
+    build: .
+    container_name: task_management_system
+    ports:
+      - target: 8080
+        published: 8080
+    depends_on:
+      postgres:
+        condition: service_healthy
+    links:
+      - postgres
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+
+  postgres:
+
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    healthcheck:
+      test: ["CMD-SHELL", "psql -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
