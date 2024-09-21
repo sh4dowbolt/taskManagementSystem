@@ -3,6 +3,7 @@ package com.suraev.TaskManagementSystem.configuration;
 import com.suraev.TaskManagementSystem.configuration.jwt.CustomAuthenticationEntryPoint;
 import com.suraev.TaskManagementSystem.configuration.jwt.ExceptionHandlerFilter;
 import com.suraev.TaskManagementSystem.configuration.jwt.JwtAuthenticationFilter;
+import com.suraev.TaskManagementSystem.service.UserService;
 import com.suraev.TaskManagementSystem.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -33,7 +34,7 @@ import java.util.List;
 public class SecurityConfiguration {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final ExceptionHandlerFilter exceptionHandlerFilter;
-    private final UserServiceImpl userService;
+    private final UserService userService;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {

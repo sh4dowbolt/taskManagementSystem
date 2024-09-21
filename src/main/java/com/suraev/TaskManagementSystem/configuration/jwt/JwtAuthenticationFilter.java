@@ -1,6 +1,8 @@
 package com.suraev.TaskManagementSystem.configuration.jwt;
 
+import com.suraev.TaskManagementSystem.service.JwtService;
 import com.suraev.TaskManagementSystem.service.JwtServiceImpl;
+import com.suraev.TaskManagementSystem.service.UserService;
 import com.suraev.TaskManagementSystem.service.UserServiceImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -24,8 +26,8 @@ import java.io.IOException;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     public static final String BEARER_PREFIX = "Bearer ";
     public static final String HEADER_NAME = "Authorization";
-    private final JwtServiceImpl jwtService;
-    private final UserServiceImpl userService;
+    private final JwtService jwtService;
+    private final UserService userService;
 
     @Override
     protected void doFilterInternal(

@@ -17,6 +17,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.zalando.problem.Status;
 
 import java.net.URI;
@@ -33,7 +34,7 @@ public class TaskServiceImpl implements TaskService{
     @Value("${spring.application.name}")
     private String applicationName;
     private final TaskRepository taskRepository;
-    private final UserServiceImpl userService;
+    private final UserService userService;
     private final TaskMapper taskMapper;
     private final CommentMapper commentMapper;
     private Long getCurrentUserId() {
@@ -42,6 +43,7 @@ public class TaskServiceImpl implements TaskService{
 
 
     @SneakyThrows
+    @Transactional
     public ResponseEntity<TaskDTO> create(TaskCreateDto taskData) {
         HttpHeaders headers = new HttpHeaders();
 
@@ -74,7 +76,7 @@ public class TaskServiceImpl implements TaskService{
         return ResponseEntity.created(new URI("/api/task" + result.getId())).headers(headers).body(taskDto);
     }
 
-
+    @Transactional
     public ResponseEntity<TaskDTO> update(TaskUpdateDTO taskData) {
         HttpHeaders headers = new HttpHeaders();
         if (taskData.getId() == null) {
@@ -96,6 +98,7 @@ public class TaskServiceImpl implements TaskService{
         }
             throw new BadRequestAlertException("You have no permission to edit this task", Status.CONFLICT);
     }
+    @Transactional
     public ResponseEntity<TaskDTO> getTaskById(Long id) {
         var task = taskRepository.findById(id);
         if (task.isPresent()) {
@@ -104,13 +107,13 @@ public class TaskServiceImpl implements TaskService{
         }
         throw new BadRequestAlertException("The task was not found", Status.NOT_FOUND);
     }
-
+    @Transactional(readOnly = true)
     public List<TaskDTO> getAllTasks() {
         List<Task> model = taskRepository.findAll();
 
         return model.stream().map(taskMapper::map).collect(Collectors.toList());
     }
-
+    @Transactional
     public ResponseEntity<Void> delete(Long id) {
         HttpHeaders headers = new HttpHeaders();
 
@@ -129,7 +132,7 @@ public class TaskServiceImpl implements TaskService{
         }
     }
 
-
+    @Transactional
     public ResponseEntity<TaskDTO> changeStatus(Long id, TaskStatusDTO updatedTask) {
         HttpHeaders headers = new HttpHeaders();
 
@@ -151,6 +154,7 @@ public class TaskServiceImpl implements TaskService{
         }
 
     }
+    @Transactional
     public ResponseEntity<TaskDTO> changeExecutor(Long id, TaskExecutorDTO updatedTask) {
         HttpHeaders headers = new HttpHeaders();
 
@@ -174,7 +178,7 @@ public class TaskServiceImpl implements TaskService{
             throw new BadRequestAlertException("You have no permission to change the executor for this task", Status.CONFLICT);
     }
 
-
+    @Transactional
     public ResponseEntity<CommentDTO> createComment(Long id,CommentCreateDTO comment) {
         HttpHeaders headers = new HttpHeaders();
 
@@ -198,7 +202,7 @@ public class TaskServiceImpl implements TaskService{
     }
 
 
-
+    @Transactional(readOnly = true)
     public Page<TaskFilterDTO> getTasksByAuthorFilteringAndPaging(Long id, Map<String, String> requestFiltration) {
         //дефолтные настройки пагинации, если с запросом приходят данные, вносим корректировку для вывода
         int pageNumber = 0;
@@ -222,6 +226,7 @@ public class TaskServiceImpl implements TaskService{
         return taskEntity.map(taskMapper::mapFilter);
 
     }
+    @Transactional(readOnly = true)
     public Page<TaskFilterDTO> getTasksByExecutorFilteringAndPaging(Long id, Map<String, String> requestFiltration) {
         //дефолтные настройки пагинации, если с запросом приходят данные, вносим корректировку для вывода
         int pageNumber = 0;

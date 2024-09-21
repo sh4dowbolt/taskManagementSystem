@@ -4,6 +4,7 @@ import com.suraev.TaskManagementSystem.dto.JwtAuthenticationResponse;
 import com.suraev.TaskManagementSystem.dto.SignInRequest;
 import com.suraev.TaskManagementSystem.dto.SignUpRequest;
 import com.suraev.TaskManagementSystem.dto.TaskDTO;
+import com.suraev.TaskManagementSystem.service.AuthenticationService;
 import com.suraev.TaskManagementSystem.service.AuthenticationServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -27,7 +28,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 public class AuthController {
 
-    private final AuthenticationServiceImpl authenticationService;
+    private final AuthenticationService authenticationService;
+
 
     @Operation(summary = "Регистрация пользователя", description = "Позволяет зарегистрировать пользователя")
     @ApiResponses({

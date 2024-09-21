@@ -14,8 +14,6 @@ import org.zalando.problem.Status;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService{
     private final UserRepository repository;
-
-
     /**
      * Сохранение пользователя
      * @param user - пользователь

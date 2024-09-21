@@ -20,7 +20,6 @@ com\suraev\TaskManagementSystem\controller\TaskControllerTest$createComment.clas
 com\suraev\TaskManagementSystem\service\TaskServiceTest$getAllTasksByExecutor.class
 com\suraev\TaskManagementSystem\controller\TaskControllerTest$changeExecutor.class
 com\suraev\TaskManagementSystem\service\TaskServiceTest$UpdateMethod.class
-com\suraev\TaskManagementSystem\TaskManagementSystemApplicationTests.class
 com\suraev\TaskManagementSystem\service\JwtServiceTest.class
 com\suraev\TaskManagementSystem\service\TaskServiceTest$getTaskByID.class
 com\suraev\TaskManagementSystem\controller\AuthControllerTest.class

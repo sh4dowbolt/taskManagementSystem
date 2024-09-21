@@ -15,4 +15,8 @@ import lombok.ToString;
 public class Health {
     @Schema(description = "Статус приложения", example = "UP")
     private HealthStatus status;
+
+    public void setHealthStatus(HealthStatus healthStatus) {
+        status = healthStatus;
+    }
 }

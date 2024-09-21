@@ -13,7 +13,9 @@ import java.util.List;
 @Entity
 @Table(name = "tasks")
 @Builder
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
 @Schema(description = "Сущность задачи")

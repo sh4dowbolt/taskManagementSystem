@@ -17,7 +17,7 @@ public class HealthResource {
     @GetMapping(value = "/health", produces = "application/json")
     public ResponseEntity<Health> getHealth() {
         final var health = new Health();
-        health.setStatus(HealthStatus.UP);
+        health.setHealthStatus(HealthStatus.UP);
         return ResponseEntity.ok().body(health);
     }
 }

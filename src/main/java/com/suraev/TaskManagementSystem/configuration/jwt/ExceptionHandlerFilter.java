@@ -21,7 +21,9 @@ import java.io.IOException;
 
     public class ExceptionHandlerFilter extends OncePerRequestFilter {
     private  final ObjectMapper objectMapper;
-        @Override
+
+
+    @Override
         public void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
             try {
                 filterChain.doFilter(request, response);

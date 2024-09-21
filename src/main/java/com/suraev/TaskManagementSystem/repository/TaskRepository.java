@@ -14,9 +14,7 @@ public interface TaskRepository extends JpaRepository<Task, Long>,
         JpaSpecificationExecutor <Task>,
         PagingAndSortingRepository<Task, Long> {
 
-
     Page<Task> findAll(Specification<Task> spec, Pageable pageable);
-
     List<Task> findAllByExecutor(Long id);
     List<Task> findAllByAuthor(Long id);
 }

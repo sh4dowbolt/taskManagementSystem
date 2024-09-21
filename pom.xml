@@ -27,7 +27,24 @@
 		<url/>
 	</scm>
 	<properties>
+		<!-->dependencies</-->
 		<java.version>19</java.version>
+		<jwtApi.version>0.12.6</jwtApi.version>
+		<mapStruct.version>1.6.0</mapStruct.version>
+		<flyWay.version>10.17.1</flyWay.version>
+		<zalando.problem.web>0.29.1</zalando.problem.web>
+		<zalando.problem.jackson>0.27.1</zalando.problem.jackson>
+		<openApi.version>1.7.0</openApi.version>
+		<springdoc-openapi>2.2.0</springdoc-openapi>
+		<lombok.version>1.18.30</lombok.version>
+		<jacksonDatabing>0.2.6</jacksonDatabing>
+		<hibernate-processor>7.0.0.Beta1</hibernate-processor>
+		<!-->plugins</-->
+		<maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+		<mapstruct-processor.version>1.4.1.Final</mapstruct-processor.version>
+		<maven-processor-plugin.version>2.0.5</maven-processor-plugin.version>
+		<hibernate-jpamodelgen>6.0.1.Final</hibernate-jpamodelgen>
+		<maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -65,34 +82,35 @@
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-api</artifactId>
-			<version>0.12.6</version>
+			<version>${jwtApi.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-impl</artifactId>
-			<version>0.12.6</version>
+			<version>${jwtApi.version}</version>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-jackson</artifactId>
-			<version>0.12.6</version>
+			<version>${jwtApi.version}</version>
 			<scope>runtime</scope>
 		</dependency>
 		<!--Утилиты-->
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
+			<version>${flyWay.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.zalando</groupId>
 			<artifactId>problem-spring-web</artifactId>
-			<version>0.29.1</version>
+			<version>${zalando.problem.web}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.zalando</groupId>
 			<artifactId>jackson-datatype-problem</artifactId>
-			<version>0.27.1</version>
+			<version>${zalando.problem.jackson}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -101,54 +119,48 @@
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-			<version>2.2.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.zalando</groupId>
-			<artifactId>problem</artifactId>
-			<version>0.27.1</version>
-		</dependency>
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<version>2.3.232</version>
+			<version>${springdoc-openapi}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-ui</artifactId>
-			<version>1.7.0</version>
+			<version>${openApi.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.zalando</groupId>
+			<artifactId>problem</artifactId>
+			<version>${zalando.problem.jackson}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.30</version>
+			<version>${lombok.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
-			<version>1.6.0</version>
+			<version>${mapStruct.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct-processor</artifactId>
-			<version>1.6.0</version>
+			<version>${mapStruct.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.openapitools</groupId>
 			<artifactId>jackson-databind-nullable</artifactId>
-			<version>0.2.6</version>
+			<version>${jacksonDatabing}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate.orm</groupId>
 			<artifactId>hibernate-processor</artifactId>
-			<version>7.0.0.Beta1</version>
+			<version>${hibernate-processor}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-database-postgresql -->
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-database-postgresql</artifactId>
-			<version>10.17.1</version>
+			<version>${flyWay.version}</version>
 			<scope>runtime</scope>
 		</dependency>
 
@@ -162,7 +174,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.13.0</version>
+				<version>${maven-compiler-plugin.version}</version>
 				<configuration>
 					<source>19</source>
 					<target>19</target>
@@ -175,7 +187,7 @@
 						<path>
 							<groupId>org.mapstruct</groupId>
 							<artifactId>mapstruct-processor</artifactId>
-							<version>1.4.1.Final</version>
+							<version>${mapstruct-processor.version}</version>
 						</path>
 					</annotationProcessorPaths>
 				</configuration>
@@ -183,7 +195,7 @@
 			<plugin>
 				<groupId>org.bsc.maven</groupId>
 				<artifactId>maven-processor-plugin</artifactId>
-				<version>2.0.5</version>
+				<version>${maven-processor-plugin.version}</version>
 				<executions>
 					<execution>
 						<id>process</id>
@@ -202,14 +214,14 @@
 					<dependency>
 						<groupId>org.hibernate</groupId>
 						<artifactId>hibernate-jpamodelgen</artifactId>
-						<version>6.0.1.Final</version>
+						<version>${hibernate-jpamodelgen}</version>
 					</dependency>
 				</dependencies>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.22.2</version>
+				<version>${maven-surefire-plugin.version}</version>
 				<configuration>
 					<skipTests>true</skipTests>
 				</configuration>
